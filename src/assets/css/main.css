@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #b80a0ac0 !important;
+  background: #918f8fc0 !important;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -113,8 +113,20 @@ label {
   transition: none;
   color: #222222;
 }
-a.nav-link.pr-3.router-link-exact-active.router-link-active{
-margin-left:70em;
+
+.navbar>.container {
+ /* margin-left: 85vw; */
 }
+a.nav-link.pr-3 {
  
+}
+p.page-info{
+  text-align: center;
+  font-size: 4vh;
+  margin-bottom: 0rem;
+  margin-left: 3rem;
+}
+li.nav-item {
+  margin-left: 20px;
+}
 
