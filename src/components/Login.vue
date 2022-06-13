@@ -1,16 +1,16 @@
 <template>
   <div class="vue-template">
-    <form>
+    <form id="loginForm" action="https://restful-booker.herokuapp.com/auth" method="POST"> <!-- Action URL -->
       <h3>Sign In</h3>
 
       <div class="form-group">
         <label>Email address</label>
-        <input type="email" class="form-control form-control-lg" />
+        <input type="email" class="form-control form-control-lg" id="email" required />
       </div>
 
       <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control form-control-lg" />
+        <input type="password" class="form-control form-control-lg" id="password" required/>
       </div>
 
       <button type="submit" class="btn btn-dark btn-lg btn-block">
@@ -31,5 +31,40 @@ export default {
   data() {
     return {};
   },
+
+  /* mounted () {
+      axios
+        .post('')  //TODO: URL
+        .then(response => ( this.users = response.data.data )) 
+    }, */
+methods:{
+  responseReact(){
+      document.forms["loginForm"].addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const resp = await fetch(event.target.action, {
+          method: "POST",
+          body: new URLSearchParams(new FormData(event.target)),
+        });
+        const body = await resp.json();
+        if(response.status==200){
+          alert("Authentification was successful"); //To Remove after implemetation of "Home" Page
+          //location.href=""; //TODO: Page to redirect to
+        }else{
+          alert("Authentification failed");
+        }
+        
+      });
+
+  }
+  }
+
+
+    
 };
 </script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+navbar-nav .nav-link {
+    margin-left: 70em;
+}
+</style>

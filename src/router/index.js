@@ -19,6 +19,7 @@ const routes = [
     name: 'forgot-password',
     component: () => import('../components/ForgotPassword.vue'),
   },
+  
 ]
 
 const router = new VueRouter({
