@@ -37,3 +37,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.inner-block {
+  width: 450px;
+}
+</style>
