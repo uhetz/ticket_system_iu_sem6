@@ -1,6 +1,6 @@
 <template>
   <div class="vue-template">
-    <form id="loginForm" action="https://restful-booker.herokuapp.com/auth" method="POST"> <!-- Action URL -->
+    <form id="loginForm" action="" method="POST"> <!-- Action URL -->
       <h3>Sign In</h3>
 
       <div class="form-group">
@@ -48,7 +48,7 @@ methods:{
         const body = await resp.json();
         if(response.status==200){
           alert("Authentification was successful"); //To Remove after implemetation of "Home" Page
-          //location.href=""; //TODO: Page to redirect to
+          //location.href=""; //TODO: Page to redirect to - if server does not automatically redirect
         }else{
           alert("Authentification failed");
         }
@@ -66,5 +66,8 @@ methods:{
 <style scoped>
 navbar-nav .nav-link {
     margin-left: 70em;
+}
+.inner-block {
+  width: 450px;
 }
 </style>
