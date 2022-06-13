@@ -1,4 +1,4 @@
-# ticket-system-project
+# vue-login-signup-ui
 
 ## Project setup
 ```
