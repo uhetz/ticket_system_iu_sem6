@@ -28,6 +28,11 @@ const routes = [
     path: '/createticket',
     name: 'createticket',
     component: () => import('../components/CreateTicket.vue'),
+  },
+  {
+    path: '/editticket',
+    name: 'editticket',
+    component: () => import('../components/EditTicket.vue'),
   }
 
 ]

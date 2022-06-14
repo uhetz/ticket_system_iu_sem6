@@ -1,7 +1,7 @@
 <template>
   <div class="vue-template">
     <form id="createTicket" action="" method="POST"> <!-- Action URL -->
-      <h3>Create a new Ticket</h3>
+      <h3>Edit the Ticket</h3>
 
      <div class="form-group">
         <label>Email address</label>
@@ -39,7 +39,7 @@
      
 
       <button type="submit" class="btn btn-dark btn-lg btn-block">
-        Submit & Create Ticket
+        Submit Changes
       </button>
     </form>
   </div>
