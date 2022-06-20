@@ -1,6 +1,6 @@
 <template>
   <div class="vue-template">
-    <form id="createTicket" action="" method="POST"> <!-- Action URL -->
+    <form id="editTicket" action="" method="POST"> <!-- Action URL -->
       <h3>Edit the Ticket</h3>
 
      <div class="form-group">
@@ -55,7 +55,7 @@ export default {
   },
 methods:{
   responseReact(){
-      document.forms["createTicket"].addEventListener("submit", async (event) => {
+      document.forms["editTicket"].addEventListener("submit", async (event) => {
         event.preventDefault();
         const resp = await fetch(event.target.action, {
           method: "POST",
