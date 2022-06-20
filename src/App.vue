@@ -6,7 +6,7 @@
     >
       <div class="container">
          <p class="page-info">Ticket System</p>
-        <!--<a class="page-info" target="_blank" >Ticket System</a>  -->
+        <!--<a href="/home" class="page-info" target="_blank" >Ticket System</a>  -->
         <ul class="nav navbar-nav flex-row float-right">
           <li class="nav-item">
             <router-link class="nav-link pr-3" to="/login">Sign in</router-link>
