@@ -37,7 +37,7 @@ export default {
     created(){
         document.title = "Ticket System";
         document.name = "Ticket System";
-        //this.$cookie.set("keyName", keyValue, "expiring time") //timeout for password?
+        //document.cookie.set("keyName", keyValue, "expiring time") //timeout for password?
     }
   }
 </script>
