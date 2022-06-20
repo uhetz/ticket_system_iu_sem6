@@ -3,30 +3,29 @@
     <h1>{{ msg }}</h1>
    <table>
   <tr>
-    <th>Ticket ID</th>
+    <th>User ID</th>
     <th>Name</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Prio</th>
+    <th>Surname</th>
+    <th>Email</th>
+    <th>Berechtigung</th>
   </tr>
   <tr>
-    <td><a href="/editTicket?id=001">001</a></td>
-    <td> Alfreds Fehler</td>
-    <td>ABCDEFG</td>
-    <td>Open</td>
-    <td>3</td>
+    <td><a href="/editUser?Userid=U001">U001</a></td>
+    <td>User 1</td>
+    <td>UserSurname1</td>
+    <td>User1@example.com</td>
+    <td>Admin</td>
   </tr>
   <tr>
-    <td><a href="/editTicket?id=002">002</a></td>  <!-- <td> <a href="/editTicket?id={{tickets.id}}">{{tickets.id}}</a></td>   -->
-    <td>Alfreds 2.Fehler</td>  <!-- {{tickets.name}}  -->
-    <td>ABCDEFG</td>           <!-- {{tickets.description}}  -->
-    <td>Open</td>              <!-- {{tickets.status}}  -->
-    <td>3</td>                 <!-- {{tickets.prio}}  -->
+    <td><a href="/editUser?Userid=U002">U002</a></td>  <!-- <td> <a href="/editTicket?id={{tickets.id}}">{{tickets.id}}</a></td>   -->
+    <td>User 2</td>
+    <td>UserSurname2</td>                        <!-- {{tickets.name}}  -->
+    <td>User2@example.com</td>           <!-- {{user.email}}  -->
+    <td>Admin</td>                         <!-- {{user.Berechtigung}}  -->
   </tr>
 </table>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -44,9 +43,6 @@ export default {
      //   .then(response => (this.tickets = response.data.data)) 
   }
 }
-
-
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

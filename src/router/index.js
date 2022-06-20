@@ -33,7 +33,18 @@ const routes = [
     path: '/editticket',
     name: 'editticket',
     component: () => import('../components/EditTicket.vue'),
-  }
+  },
+  {
+    path: '/UserManagement',
+    name: 'Usermanagement',
+    component: () => import('../components/UserManagement.vue'),
+  },
+
+  {
+    path: '/EditUser',
+    name: 'EditUser',
+    component: () => import('../components/EditUser.vue'),
+  },
 
 ]
 
