@@ -5,12 +5,12 @@
 
       <div class="form-group">
         <label>User ID</label>
-        <input type="text" class="form-control form-control-lg" id="User ID" required/>
+        <input type="text" class="form-control form-control-lg" id="userid" required/>
       </div>
 
       <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control form-control-lg" id="User Name" required/>
+        <input type="text" class="form-control form-control-lg" id="username" required/>
       </div>
 
      <div class="form-group">
@@ -20,7 +20,7 @@
 
        <div class="form-group">
         <label> Berechtigung</label>
-        <input type="text" class="form-control form-control-lg" id="Berechtigung" required />
+        <input type="text" class="form-control form-control-lg" id="permission" required />
       </div>
 
       <button type="submit" class="btn btn-dark btn-lg btn-block">
