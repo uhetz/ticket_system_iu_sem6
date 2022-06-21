@@ -1,34 +1,45 @@
 {
   "tickets": [
-    {
-        "id": 1,
-        "name": "Support missing Login for System ABC",
-        "priority": 1,
-        "status": "CLOSED",
-        "erstellerId": 1,
-        "bearbeiterId": 2
-      },
-      {
-        "id": 2,
-        "name": "Absturz meines PCs nach zu langem Kaffee trinken",
-        "priority": 3,
-        "status": "ERSTELLT",
-        "erstellerId": 1,
-        "bearbeiterId": 2
+     {
+         "id": 1,
+         "name": "Support missing Login for System ABC",
+         "priority": 1,
+         "status": "CLOSED",
+         "creatorId": 1,
+         "editorId": 2,
+         "description" :"This is the first description"
+       },
+       {
+         "id": 2,
+         "name": "Absturz meines PCs nach zu langem Kaffee trinken",
+         "priority": 3,
+         "status": "OPEN",
+         "creatorId": 1,
+         "editorId": 2,
+         "description" :"This is the second description"
+       },
+       {
+        "id": 3,
+        "name": "Seite hat nicht geladen",
+        "priority": 2,
+        "status": "In Progress",
+        "creatorId": 1,
+        "editorId": 2,
+        "description" :"This is the third description"
       }
-  ],
-  "users": [
-    {
-        "id": 1,
-        "firstName": "Alfred",
-        "lastName": "HatImmerEinTechnischesProblem",
-        "email": "alfred.probleme@tolledomain12345.de"
-    },
-    {
-        "id": 2,
-        "firstName": "Hans",
-        "lastName": "Fachmann",
-        "email": "hans.fachmann@wirloesenalles.de"
-    }
-  ]
-}
+     ],
+   "users": [
+     {
+         "id": 1,
+         "firstName": "Alfred",
+         "lastName": "HatImmerEinTechnischesProblem",
+         "email": "alfred.probleme@tolledomain12345.de"
+     },
+     {
+         "id": 2,
+         "firstName": "Hans",
+         "lastName": "Fachmann",
+         "email": "hans.fachmann@wirloesenalles.de"
+     }
+   ]
+ }

@@ -8,40 +8,54 @@
     <th>Description</th>
     <th>Status</th>
     <th>Prio</th>
+    <th>Author</th>
   </tr>
+ <!--  <tr>
+    <td><a href="/editTicket?id=001">001</a></td> <td> <a href="/editTicket?id={{tickets.id}}">{{tickets.id}}</a></td>
+    <td> Alfreds Fehler</td> {{tickets.name}}
+    <td>ABCDEFG</td> {{tickets.description}}
+    <td>Open</td>  {{tickets.status}}
+    <td>3</td> {{tickets.prio}}
+  </tr> 
   <tr>
-    <td><a href="/editTicket?id=001">001</a></td>
-    <td> Alfreds Fehler</td>
-    <td>ABCDEFG</td>
-    <td>Open</td>
-    <td>3</td>
-  </tr>
-  <tr>
-    <td><a href="/editTicket?id=002">002</a></td>  <!-- <td> <a href="/editTicket?id={{tickets.id}}">{{tickets.id}}</a></td>   -->
-    <td>Alfreds 2.Fehler</td>  <!-- {{tickets.name}}  -->
-    <td>ABCDEFG</td>           <!-- {{tickets.description}}  -->
-    <td>Open</td>              <!-- {{tickets.status}}  -->
-    <td>3</td>                 <!-- {{tickets.prio}}  -->
-  </tr>
+    <td><a href="/editTicket?id=002">002</a></td>  
+    <td>Alfreds 2.Fehler</td>  
+    <td>ABCDEFG</td>           
+    <td>Open</td>             
+    <td>3</td>                 
+  </tr> -->
+
+<tr v-for="ticket in tickets" :key="ticket.id" >
+            <td><a v-bind:href="'/editTicket?id='+ ticket.id">{{ticket.id}}</a></td>
+            <td><a v-bind:href="'/editTicket?id='+ ticket.id">{{ticket.name}}</a></td>
+            <td>{{ticket.description}}</td>
+            <td>{{ticket.status}}</td>
+            <td>{{ticket.priority}}</td>
+
+          </tr>
+
 </table>
   </div>
 </template>
 
 
 <script>
+import axios from 'axios';
 export default {
   name: 'Home',
   props: {
     msg: String
   },
   data() {
-    return {}
+    return { tickets:null }
 
   },
   mounted(){
-     // axios
-     //   .get('') //TODO: Get Data 
-     //   .then(response => (this.tickets = response.data.data)) 
+      axios
+        .get('/tickets') //TODO: Get Data 
+        .then(response => (this.tickets = response.data)) 
+      //  .get('/users') 
+      //  .then(response => (this.users = response.data)) 
   }
 }
 
