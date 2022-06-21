@@ -31,7 +31,7 @@
             <td>{{ticket.description}}</td>
             <td>{{ticket.status}}</td>
             <td>{{ticket.priority}}</td>
-
+            <td>{{getUserById(ticket.creatorId).firstName}} {{getUserById(ticket.creatorId).lastName}}</td>
           </tr>
 
 </table>
@@ -47,15 +47,32 @@ export default {
     msg: String
   },
   data() {
-    return { tickets:null }
+    return { tickets:null, users:[] }
 
   },
   mounted(){
       axios
         .get('/tickets') //TODO: Get Data 
-        .then(response => (this.tickets = response.data)) 
-      //  .get('/users') 
-      //  .then(response => (this.users = response.data)) 
+        .then(response => {
+            this.tickets = response.data;
+            for(let i=0; i < this.tickets.length; i++){
+                this.loadUser(this.tickets[i].creatorId);
+            }
+        }) 
+        
+  },
+  methods:{
+    loadUser(userid){
+      axios.get('/users?id=' + userid) 
+        .then(response => (this.users.push(response.data[0]))) 
+    },
+    getUserById(userid){
+      for(let i=0; i < this.users.length; i++){
+               if(this.users[i].id===userid){
+                   return this.users[i]
+               }
+            }
+    }
   }
 }
 
