@@ -55,10 +55,7 @@ export default {
         .get('/tickets') //TODO: Get Data 
         .then(response => {
             this.tickets = response.data;
-            for(let i=0; i < this.tickets.length; i++){
-                this.loadUser(this.tickets[i].creatorId);
-            }
-        }) 
+            this.tickets.forEach(ticket => {this.loadUser(ticket.creatorId);});        }) 
         
   },
   methods:{
