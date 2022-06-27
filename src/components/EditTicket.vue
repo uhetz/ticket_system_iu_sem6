@@ -5,37 +5,47 @@
 
      <div class="form-group">
         <label>Email address</label>
-        <input type="email" class="form-control form-control-lg" id="email" required />
+        <input type="email" class="form-control form-control-lg" id="email" required  v-model="user.email" >  <!-- v-model="getUserById(ticket.creatorId).email" -->
       </div>
 
-      <div class="form-group">
+      <div class="form-group" >
         <label>Ticket Name</label>
-        <input type="text" class="form-control form-control-lg" id="ticketname" required/>
+        <input type="text" class="form-control form-control-lg" id="ticketname" required  v-model="ticket.name" /> 
       </div>
 
-      <div class="form-group">
+      <div class="form-group" >
         <label>Date</label>
-        <input type="date" class="form-control form-control-lg" id="date" required v-model="currentDate" />
+        <input type="date" class="form-control form-control-lg" id="date" required v-model="ticket.createDate"  />
       </div>
       
       <div class="form-group">
         <label>Priority </label>
-        <select class="form-control form-control-lg" required >
+        <select class="form-control form-control-lg" required  v-model="ticket.priority">
             <option selected disabled value="">Please select a Priority Level</option>
             <option value="1">1 - High Priority</option>
             <option value="2">2 - Medium Priority</option>
             <option value="3">3 - Low Priority</option>
         </select>
-
-
       </div>
-      
-      <div class="form-group">
+
+       <div class="form-group">
+        <label>Status </label>
+        <select class="form-control form-control-lg" required v-model="ticket.status" >
+            <option selected disabled value="">Please select a Status</option>
+            <option value="open">Open</option>
+            <option value="in_progress">In Progress</option>
+            <option value="postponed">Postponed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="done">Done</option>
+        </select>
+      </div>
+
+      <div class="form-group"  >
         <label>Description</label>
         <br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea>
+        <textarea id="description" name="description" rows="4" cols="50" v-model="ticket.description" ></textarea>
       </div>
-        <input type="hidden" class="form-control form-control-lg" id="status" value="Open" required/>
+        
      
 
       <button type="submit" class="btn btn-dark btn-lg btn-block">
@@ -46,13 +56,28 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
 
-      return {
-        currentDate: '2022-05-05'
+      return {ticket:null,
+        currentDate: '2022-05-05',
+        user:{} 
     };
   },
+  mounted(){
+      axios
+        .get('/tickets?id='  + this.$route.query.id  ) //TODO: Get Data 
+        .then(response => {
+            this.ticket = response.data[0];
+            this.loadUser(this.ticket.creatorId);
+            
+
+            
+                  }) 
+        
+  },
+
 methods:{
   responseReact(){
       document.forms["editTicket"].addEventListener("submit", async (event) => {
@@ -80,7 +105,11 @@ methods:{
         const formatedDate = [y,m, d].join('-');
         console.log(formatedDate);
     return formatedDate;
-  }
+  },
+      loadUser(userid){
+      axios.get('/users?id=' + userid) 
+        .then(response => (this.user = (response.data[0]))) 
+    }
   }
   ,
   created: function(){
