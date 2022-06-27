@@ -5,22 +5,26 @@
 
      <div class="form-group" v-for="ticket in tickets" :key="ticket.id">
         <label>Email address</label>
-        <input type="email" class="form-control form-control-lg" id="email" required  >  <!-- v-model="getUserById(ticket.creatorId).email" -->
+
+        <input type="email" class="form-control form-control-lg" id="email" required  v-model="user.email" >  <!-- v-model="getUserById(ticket.creatorId).email" -->
       </div>
 
-      <div class="form-group" v-for="ticket in tickets" :key="ticket.id">
+      <div class="form-group" >
+
         <label>Ticket Name</label>
         <input type="text" class="form-control form-control-lg" id="ticketname" required  v-model="ticket.name" /> 
       </div>
 
-      <div class="form-group" v-for="ticket in tickets" :key="ticket.id">
+
+      <div class="form-group" >
         <label>Date</label>
-        <input type="date" class="form-control form-control-lg" id="date" required  />
+        <input type="date" class="form-control form-control-lg" id="date" required v-model="ticket.createDate"  />
+
       </div>
       
       <div class="form-group">
         <label>Priority </label>
-        <select class="form-control form-control-lg" required >
+        <select class="form-control form-control-lg" required  v-model="ticket.priority">
             <option selected disabled value="">Please select a Priority Level</option>
             <option value="1">1 - High Priority</option>
             <option value="2">2 - Medium Priority</option>
@@ -30,7 +34,8 @@
 
        <div class="form-group">
         <label>Status </label>
-        <select class="form-control form-control-lg" required >
+
+        <select class="form-control form-control-lg" required v-model="ticket.status" >
             <option selected disabled value="">Please select a Status</option>
             <option value="open">Open</option>
             <option value="in_progress">In Progress</option>
@@ -40,7 +45,9 @@
         </select>
       </div>
 
-      <div class="form-group"  v-for="ticket in tickets" :key="ticket.id">
+
+      <div class="form-group"  >
+
         <label>Description</label>
         <br>
         <textarea id="description" name="description" rows="4" cols="50" v-model="ticket.description" ></textarea>
@@ -60,16 +67,22 @@ import axios from 'axios';
 export default {
   data() {
 
-      return {tickets:null,
-        currentDate: '2022-05-05'
+
+      return {ticket:null,
+        currentDate: '2022-05-05',
+        user:{} 
+
     };
   },
   mounted(){
       axios
         .get('/tickets?id='  + this.$route.query.id  ) //TODO: Get Data 
         .then(response => {
-            this.tickets = response.data;
-            this.tickets.forEach(ticket => {this.loadUser(ticket.creatorId);});
+
+            this.ticket = response.data[0];
+            this.loadUser(this.ticket.creatorId);
+            
+
 
             
                   }) 
@@ -106,21 +119,8 @@ methods:{
   },
       loadUser(userid){
       axios.get('/users?id=' + userid) 
-        .then(response => (this.users.push(response.data[0]))) 
-    },
-    getUserById(userid){
-      for(let i=0; i < this.users.length; i++){
-               if(this.users[i].id===userid){
-                   return this.users[i]
-               }
-            }
-    },    
-    getUserMail(userid){
-      for(let i=0; i < this.users.length; i++){
-               if(this.users[i].id===userid){
-                   return this.users[i].email
-               }
-            }
+        .then(response => (this.user = (response.data[0]))) 
+
     }
   }
   ,
