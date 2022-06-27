@@ -3,19 +3,19 @@
     <form id="editTicket" action="" method="POST"> <!-- Action URL -->
       <h3>Edit the Ticket</h3>
 
-     <div class="form-group">
+     <div class="form-group" v-for="ticket in tickets" :key="ticket.id">
         <label>Email address</label>
-        <input type="email" class="form-control form-control-lg" id="email" required />
+        <input type="email" class="form-control form-control-lg" id="email" required  >  <!-- v-model="getUserById(ticket.creatorId).email" -->
       </div>
 
-      <div class="form-group">
+      <div class="form-group" v-for="ticket in tickets" :key="ticket.id">
         <label>Ticket Name</label>
-        <input type="text" class="form-control form-control-lg" id="ticketname" required/>
+        <input type="text" class="form-control form-control-lg" id="ticketname" required  v-model="ticket.name" /> 
       </div>
 
-      <div class="form-group">
+      <div class="form-group" v-for="ticket in tickets" :key="ticket.id">
         <label>Date</label>
-        <input type="date" class="form-control form-control-lg" id="date" required v-model="currentDate" />
+        <input type="date" class="form-control form-control-lg" id="date" required  />
       </div>
       
       <div class="form-group">
@@ -26,16 +26,26 @@
             <option value="2">2 - Medium Priority</option>
             <option value="3">3 - Low Priority</option>
         </select>
-
-
       </div>
-      
-      <div class="form-group">
+
+       <div class="form-group">
+        <label>Status </label>
+        <select class="form-control form-control-lg" required >
+            <option selected disabled value="">Please select a Status</option>
+            <option value="open">Open</option>
+            <option value="in_progress">In Progress</option>
+            <option value="postponed">Postponed</option>
+            <option value="cancelled">Cancelled</option>
+            <option value="done">Done</option>
+        </select>
+      </div>
+
+      <div class="form-group"  v-for="ticket in tickets" :key="ticket.id">
         <label>Description</label>
         <br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea>
+        <textarea id="description" name="description" rows="4" cols="50" v-model="ticket.description" ></textarea>
       </div>
-        <input type="hidden" class="form-control form-control-lg" id="status" value="Open" required/>
+        
      
 
       <button type="submit" class="btn btn-dark btn-lg btn-block">
@@ -46,13 +56,26 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
 
-      return {
+      return {tickets:null,
         currentDate: '2022-05-05'
     };
   },
+  mounted(){
+      axios
+        .get('/tickets?id='  + this.$route.query.id  ) //TODO: Get Data 
+        .then(response => {
+            this.tickets = response.data;
+            this.tickets.forEach(ticket => {this.loadUser(ticket.creatorId);});
+
+            
+                  }) 
+        
+  },
+
 methods:{
   responseReact(){
       document.forms["editTicket"].addEventListener("submit", async (event) => {
@@ -80,7 +103,25 @@ methods:{
         const formatedDate = [y,m, d].join('-');
         console.log(formatedDate);
     return formatedDate;
-  }
+  },
+      loadUser(userid){
+      axios.get('/users?id=' + userid) 
+        .then(response => (this.users.push(response.data[0]))) 
+    },
+    getUserById(userid){
+      for(let i=0; i < this.users.length; i++){
+               if(this.users[i].id===userid){
+                   return this.users[i]
+               }
+            }
+    },    
+    getUserMail(userid){
+      for(let i=0; i < this.users.length; i++){
+               if(this.users[i].id===userid){
+                   return this.users[i].email
+               }
+            }
+    }
   }
   ,
   created: function(){

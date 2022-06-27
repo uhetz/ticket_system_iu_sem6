@@ -35,7 +35,7 @@ export default {
   /* mounted () {
       axios
         .post('')  //TODO: URL
-        .then(response => ( this.users = response.data.data )) 
+        .then(response => ( this.users = response.data.xyz )) 
     }, */
 methods:{
   responseReact(){
