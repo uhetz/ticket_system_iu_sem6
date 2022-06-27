@@ -1,26 +1,26 @@
 <template>
-  <div class="vue-template">
-    <form id="editTicket" action="" method="POST"> <!-- Action URL -->
-      <h3>Edit the Ticket</h3>
+  <div class="vue-template">   
+    <h3>Edit the Ticket</h3>
 
      <div class="form-group">
         <label>Email address</label>
-        <input type="email" class="form-control form-control-lg" id="email" required  v-model="user.email" >  <!-- v-model="getUserById(ticket.creatorId).email" -->
+        <input disabled type="email" class="form-control form-control-lg" id="email" required  v-model="user.email" >  <!-- v-model="getUserById(ticket.creatorId).email" -->
       </div>
-
+    
+    <form id="editTicket"    @change="editTicket()"  > <!-- Action URL -->
       <div class="form-group" >
         <label>Ticket Name</label>
-        <input type="text" class="form-control form-control-lg" id="ticketname" required  v-model="ticket.name" /> 
+        <input type="text" class="form-control form-control-lg"  name="name" id="ticketname" required  v-model="ticket.name" > </input>
       </div>
 
       <div class="form-group" >
         <label>Date</label>
-        <input type="date" class="form-control form-control-lg" id="date" required v-model="ticket.createDate"  />
+        <input type="date" class="form-control form-control-lg" name="date" id="date" required v-model="ticket.createDate"  />
       </div>
       
       <div class="form-group">
         <label>Priority </label>
-        <select class="form-control form-control-lg" required  v-model="ticket.priority">
+        <select class="form-control form-control-lg"  name="priority" required  v-model="ticket.priority">
             <option selected disabled value="">Please select a Priority Level</option>
             <option value="1">1 - High Priority</option>
             <option value="2">2 - Medium Priority</option>
@@ -30,7 +30,7 @@
 
        <div class="form-group">
         <label>Status </label>
-        <select class="form-control form-control-lg" required v-model="ticket.status" >
+        <select class="form-control form-control-lg" name="status" required v-model="ticket.status" >
             <option selected disabled value="">Please select a Status</option>
             <option value="open">Open</option>
             <option value="in_progress">In Progress</option>
@@ -60,7 +60,7 @@ import axios from 'axios';
 export default {
   data() {
 
-      return {ticket:null,
+      return {ticket:{name:''},
         currentDate: '2022-05-05',
         user:{} 
     };
@@ -103,13 +103,18 @@ methods:{
         const y = String(date.getFullYear());
 
         const formatedDate = [y,m, d].join('-');
-        console.log(formatedDate);
+        //console.log(formatedDate);
     return formatedDate;
   },
       loadUser(userid){
       axios.get('/users?id=' + userid) 
         .then(response => (this.user = (response.data[0]))) 
+    },
+    editTicket(){
+       axios.put('http://localhost:3000/tickets', this.ticket);
+      
     }
+
   }
   ,
   created: function(){

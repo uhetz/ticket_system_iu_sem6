@@ -1,48 +1,48 @@
 {
   "tickets": [
-     {
-         "id": 1,
-         "name": "Support missing Login for System ABC",
-         "priority": 1,
-         "status": "done",
-         "creatorId": 1,
-         "editorId": 2,
-         "description" :"This is the first description",
-         "createDate" : "2022-05-05"
-       },
-       {
-         "id": 2,
-         "name": "Absturz meines PCs nach zu langem Kaffee trinken",
-         "priority": 3,
-         "status": "open",
-         "creatorId": 2,
-         "editorId": 2,
-         "description" :"This is the second description",
-         "createDate" : "2022-09-15"
-       },
-       {
-        "id": 3,
-        "name": "Seite hat nicht geladen",
-        "priority": 2,
-        "status": "in_progress",
-        "creatorId": 1,
-        "editorId": 2,
-        "description" :"This is the third description",
-        "createDate" : "2022-02-22"
-      }
-     ],
-   "users": [
-     {
-         "id": 1,
-         "firstName": "Alfred",
-         "lastName": "HatImmerEinTechnischesProblem",
-         "email": "alfred.probleme@tolledomain12345.de"
-     },
-     {
-         "id": 2,
-         "firstName": "Hans",
-         "lastName": "Fachmann",
-         "email": "hans.fachmann@wirloesenalles.de"
-     }
-   ]
- }
+    {
+      "id": 1,
+      "name": "Support missing Login for System ABC",
+      "priority": 1,
+      "status": "done",
+      "creatorId": 1,
+      "editorId": 2,
+      "description": "This is the first description",
+      "createDate": "2022-05-05"
+    },
+    {
+      "id": 2,
+      "name": "Absturz meines PCs nach zu langem Kaffee trinken",
+      "priority": 3,
+      "status": "open",
+      "creatorId": 2,
+      "editorId": 2,
+      "description": "This is the second description",
+      "createDate": "2022-09-15"
+    },
+    {
+      "id": 3,
+      "name": "Seite hat nicht geladen",
+      "priority": 2,
+      "status": "in_progress",
+      "creatorId": 1,
+      "editorId": 2,
+      "description": "This is the third description",
+      "createDate": "2022-02-22"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Alfred",
+      "lastName": "HatImmerEinTechnischesProblem",
+      "email": "alfred.probleme@tolledomain12345.de"
+    },
+    {
+      "id": 2,
+      "firstName": "Hans",
+      "lastName": "Fachmann",
+      "email": "hans.fachmann@wirloesenalles.de"
+    }
+  ]
+}
