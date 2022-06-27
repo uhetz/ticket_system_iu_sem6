@@ -129,4 +129,24 @@ p.page-info{
 li.nav-item {
   margin-left: 20px;
 }
+/* unvisited link */
+a:link {
+  color: #212529;
+  text-decoration: none;
+}
+/* visited link */
+a:visited {
+  color: #212529;
+  text-decoration: none;
 
+}
+/* mouse over link */
+a:hover {
+  color: #212529;
+  text-decoration: none;
+}
+/* selected link */
+a:active {
+  color: #212529;
+  text-decoration: none;
+}

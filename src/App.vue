@@ -5,7 +5,7 @@
       class="navbar shadow bg-white rounded justify-content-between flex-nowrap flex-row fixed-top"
     >
       <div class="container">
-         <p class="page-info">Ticket System</p>
+         <p class="page-info"><a href="/home"  target="_self" >Ticket System</a></p>
         <!--<a href="/home" class="page-info" target="_blank" >Ticket System</a>  -->
         <ul class="nav navbar-nav flex-row float-right">
           <li class="nav-item">
