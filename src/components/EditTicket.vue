@@ -7,7 +7,8 @@
         <input disabled type="email" class="form-control form-control-lg" id="email" required  v-model="user.email" >  <!-- v-model="getUserById(ticket.creatorId).email" -->
       </div>
     
-    <form id="editTicket"    @change="editTicket()"  > <!-- Action URL -->
+    <form id="editTicket"   @submit="editTicket()"  > <!-- Action URL -->
+      <input type="hidden" class="form-control form-control-lg"  name="id" id="id" required  v-model="ticket.id" />
       <div class="form-group" >
         <label>Ticket Name</label>
         <input type="text" class="form-control form-control-lg"  name="name" id="ticketname" required  v-model="ticket.name" > </input>
@@ -111,7 +112,13 @@ methods:{
         .then(response => (this.user = (response.data[0]))) 
     },
     editTicket(){
-       axios.put('http://localhost:3000/tickets', this.ticket);
+      let ticket_id = new URL(location.href).searchParams.get('id');
+      console.log(ticket_id);
+       axios.put(('http://localhost:3000/tickets/' + ticket_id  ), this.ticket).then(location.href="/home"); //TODO: TicketID
+      
+
+      
+
       
     }
 
