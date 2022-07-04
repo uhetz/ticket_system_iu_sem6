@@ -16,7 +16,7 @@
 
       <div class="form-group" >
         <label>Date</label>
-        <input type="date" class="form-control form-control-lg" name="date" id="date" required v-model="ticket.createDate"  />
+        <input disabled type="date" class="form-control form-control-lg" name="date" id="date" required v-model="ticket.createDate"  />
       </div>
       
       <div class="form-group">
