@@ -1,16 +1,16 @@
 <template>
   <div class="vue-template">
-    <form id="loginForm" action="" method="POST"> <!-- Action URL -->
+    <form id="loginForm"  @submit.prevent="loginCheck()" > <!-- Action URL -->
       <h3>Sign In</h3>
 
       <div class="form-group">
-        <label>Email address</label>
-        <input type="email" class="form-control form-control-lg" id="email"  name="email" required />
+        <label>Username</label>
+        <input type="text" class="form-control form-control-lg" id="username"  name="username"  v-model="login.username" required />
       </div>
 
       <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control form-control-lg" id="password" name="password" required />
+        <input type="password" class="form-control form-control-lg" id="password" name="password" v-model="login.password"  required />
       </div>
 
       <button type="submit" class="btn btn-dark btn-lg btn-block">
@@ -27,35 +27,36 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
-    return {};
+    return {
+      login:{}
+
+    };
   },
 
   /* mounted () {
       axios
-        .post('')  //TODO: URL
-        .then(response => ( this.users = response.data.xyz )) 
+
+        .get('')  //TODO: URL
+        .then(response => ( this.users = response.data.data )) 
+
     }, */
 methods:{
-  responseReact(){
-      document.forms["loginForm"].addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const resp = await fetch(event.target.action, {
-          method: "POST",
-          body: new URLSearchParams(new FormData(event.target)),
-        });
-        const body = await resp.json();
-        if(response.status==200){
-          alert("Authentification was successful"); //To Remove after implemetation of "Home" Page
-          //location.href=""; //TODO: Page to redirect to - if server does not automatically redirect
-        }else{
-          alert("Authentification failed");
-        }
+ loginCheck(){
+//console.log("Login checker");
+  axios.post('/login', this.login ) 
+        .then(response => { if(response.status == 200){
+                  console.log("Authentification was successful"); //To Remove after implemetation of "Home" Page
+                  //location.href=""; //TODO: Page to redirect to - if server does not automatically redirect
+                }else{
+                  alert("Authentification failed");
+                } } 
+          );
         
-      });
+ }
 
-  }
   }
 
 

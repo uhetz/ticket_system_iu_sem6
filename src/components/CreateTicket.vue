@@ -15,7 +15,7 @@
 
       <div class="form-group">
         <label>Date</label>
-        <input type="date" class="form-control form-control-lg" id="date" required v-model="currentDate" />
+        <input disabled type="date" class="form-control form-control-lg" id="date" required v-model="currentDate" />
       </div>
       
       <div class="form-group">
