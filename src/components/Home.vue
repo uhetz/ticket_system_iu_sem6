@@ -29,7 +29,7 @@
             <td><a v-bind:href="'/editTicket?id='+ ticket.id">{{ticket.id}}</a></td>
             <td><a v-bind:href="'/editTicket?id='+ ticket.id">{{ticket.name}}</a></td>
             <td>{{ticket.description}}</td>
-            <td>{{ticket.status}}</td>
+            <td>{{getStatus(ticket.status)}}</td>
             <td>{{ticket.priority}}</td>
             <td>{{getUserById(ticket.creatorId).firstName}} {{getUserById(ticket.creatorId).lastName}}</td>
           </tr>
@@ -69,6 +69,27 @@ export default {
                    return this.users[i]
                }
             }
+    },
+    getStatus(status){
+      var status_formatted ="";
+      switch(status){
+        case "cancelled": 
+          status_formatted="Cancelled";
+          break;
+        case "open": 
+          status_formatted="Open";
+          break;
+        case "in_progress": 
+          status_formatted="In Progress";
+          break;
+        case "postponed": 
+          status_formatted="Postponed";
+          break;
+        case "done": 
+          status_formatted="Done";
+          break;  
+      }
+    return status_formatted;
     }
   }
 }
