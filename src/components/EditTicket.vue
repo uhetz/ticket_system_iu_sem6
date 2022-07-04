@@ -2,7 +2,7 @@
   <div class="vue-template">   
     <h3>Edit the Ticket</h3>
 
-     <div class="form-group">
+     <div class="form-group" v-for="ticket in tickets" :key="ticket.id">
         <label>Email address</label>
         <input disabled type="email" class="form-control form-control-lg" id="email" required  v-model="user.email" >  <!-- v-model="getUserById(ticket.creatorId).email" -->
       </div>
@@ -10,13 +10,16 @@
     <form id="editTicket"   @submit="editTicket()"  > <!-- Action URL -->
       <input type="hidden" class="form-control form-control-lg"  name="id" id="id" required  v-model="ticket.id" />
       <div class="form-group" >
+
         <label>Ticket Name</label>
         <input type="text" class="form-control form-control-lg"  name="name" id="ticketname" required  v-model="ticket.name" > </input>
       </div>
 
+
       <div class="form-group" >
         <label>Date</label>
         <input type="date" class="form-control form-control-lg" name="date" id="date" required v-model="ticket.createDate"  />
+
       </div>
       
       <div class="form-group">
@@ -32,6 +35,7 @@
        <div class="form-group">
         <label>Status </label>
         <select class="form-control form-control-lg" name="status" required v-model="ticket.status" >
+
             <option selected disabled value="">Please select a Status</option>
             <option value="open">Open</option>
             <option value="in_progress">In Progress</option>
@@ -41,7 +45,9 @@
         </select>
       </div>
 
+
       <div class="form-group"  >
+
         <label>Description</label>
         <br>
         <textarea id="description" name="description" rows="4" cols="50" v-model="ticket.description" ></textarea>
@@ -62,17 +68,21 @@ export default {
   data() {
 
       return {ticket:{name:''},
+
         currentDate: '2022-05-05',
         user:{} 
+
     };
   },
   mounted(){
       axios
         .get('/tickets?id='  + this.$route.query.id  ) //TODO: Get Data 
         .then(response => {
+
             this.ticket = response.data[0];
             this.loadUser(this.ticket.creatorId);
             
+
 
             
                   }) 
@@ -110,16 +120,13 @@ methods:{
       loadUser(userid){
       axios.get('/users?id=' + userid) 
         .then(response => (this.user = (response.data[0]))) 
+
     },
     editTicket(){
       let ticket_id = new URL(location.href).searchParams.get('id');
       console.log(ticket_id);
        axios.put(('http://localhost:3000/tickets/' + ticket_id  ), this.ticket).then(location.href="/home"); //TODO: TicketID
-      
 
-      
-
-      
     }
 
   }
