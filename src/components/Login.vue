@@ -38,8 +38,10 @@ export default {
 
   /* mounted () {
       axios
+
         .get('')  //TODO: URL
         .then(response => ( this.users = response.data.data )) 
+
     }, */
 methods:{
  loginCheck(){
