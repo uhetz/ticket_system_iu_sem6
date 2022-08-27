@@ -55,7 +55,17 @@ methods:{
                 } } 
           );
         
- }
+ },
+ function createCookie(name,value,minutes) {
+    if (minutes) {
+        var date = new Date();
+        date.setTime(date.getTime()+(minutes*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    } else {
+        var expires = "";
+    }
+    document.cookie = name+"="+value+expires+"; path=/";
+}
 
   }
 
